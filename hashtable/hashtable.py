@@ -162,7 +162,17 @@ class HashTable:
         # Your code here
 
         if self.get_load_factor() > 0.7:
-            return None
+            old_table = self.storage
+            self.storage = [None] * new_capacity
+            self.capacity = new_capacity
+
+            for linked_list in old_table:
+                if linked_list != None:
+                    curr = linked_list
+
+                    while curr:
+                        self.put(curr.key, curr.value)
+                        curr = curr.next
 
 
 

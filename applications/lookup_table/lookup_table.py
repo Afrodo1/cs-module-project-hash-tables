@@ -1,5 +1,8 @@
 # Your code here
+import math
+import random
 
+table = {}
 
 def slowfun_too_slow(x, y):
     v = math.pow(x, y)
@@ -9,12 +12,29 @@ def slowfun_too_slow(x, y):
 
     return v
 
+def build_table():
+    for x in range(2,14):
+        for y in range(3,6):
+            table[(x,y)] = slowfun_too_slow(x,y)
+
+build_table()
+print(table)
+
+
 def slowfun(x, y):
     """
     Rewrite slowfun_too_slow() in here so that the program produces the same
     output, but completes quickly instead of taking ages to run.
     """
     # Your code here
+    if (x,y) not in table:
+        table[(x,y)] = slowfun_too_slow(x,y) 
+
+    return table[(x,y)]
+
+
+# for i in range(10):
+#     slowfun(i,3)
 
 
 
